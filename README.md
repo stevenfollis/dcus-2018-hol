@@ -1,12 +1,57 @@
 # dcus-2018-hol
 Hands on Labs for DockerCon US 2018
+## Understanding the Play With Docker Interface
+
+![](./images/pwd_screen.png)
+
+This workshop is only available to people in a pre-arranged workshop. That may happen through a [Docker Meetup](https://events.docker.com/chapters/), a conference workshop that is being led by someone who has made these arrangements, or special arrangements between Docker and your company. The workshop leader will provide you with the URL to a workshop environment that includes [Docker Enterprise Edition](https://www.docker.com/enterprise-edition). The environment will be based on [Play with Docker](https://labs.play-with-docker.com/).
+
+If none of these apply to you, contact your local [Docker Meetup Chapter](https://events.docker.com/chapters/) and ask if there are any scheduled workshops. In the meantime, you may be interested in the labs available through the [Play with Docker Classroom](training.play-with-docker.com).
+
+There are three main components to the Play With Docker (PWD) interface. 
+
+> **Important Note: beta** Please note, as of now this is a beta Docker EE 2.0 environment. Docker EE 2.0 shows off the new Kubernetes functionality which is described below.
+
+### 1. Console Access
+Play with Docker provides access to the 4 Docker EE hosts in your Cluster. These machines are:
+
+* A Linux-based Docker EE 18.01 Manager node
+* Three Linux-based Docker EE 18.01 Worker nodes
+* A Windows Server 2016-based Docker EE 17.06 Worker Node
+
+> In some cases, your workshop organizer will have requested a Linux only environment. In that case, just skip the Windows sections of the workshop.
+
+By clicking a name on the left, the console window will be connected to that node.
+
+### 2. Access to your Universal Control Plane (UCP) and Docker Trusted Registry (DTR) servers
+
+Additionally, the PWD screen provides you with a one-click access to the Universal Control Plane (UCP)
+web-based management interface as well as the Docker Trusted Registry (DTR) web-based management interface. Clicking on either the `UCP` or `DTR` button will bring up the respective server web interface in a new tab.
+
+### 3. Session Information
+
+Throughout the lab you will be asked to provide either hostnames or login credentials that are unique to your environment. These are displayed for you at the bottom of the screen.
+
+## Document conventions
+
+- When you encounter a phrase in between `<` and `>`  you are meant to substitute in a different value.
+
+	For instance if you see `<dtr hostname>` you would actually type something like `ip172-18-0-7-b70lttfic4qg008cvm90.direct.ee-workshop.play-with-docker.com`
+
+
+- When you see the Linux penguin all the following instructions should be completed in your Linux console
+
+	![](./images/linux75.png)
+
+- When you see the Windows flag all the subsequent instructions should be completed in your Windows console. You can skip these sections if you have a Linux only environment.
+
+    ![](./images/windows75.png)
 
 [Docker for Beginners - Linux](/beginner-linux/)
 You've been learning about Docker, here's a chance to get a hands on introduction to the key concepts of Docker. This lab will cover the basics of 
 * Images
 * Running containers
 * Container isolation
-* Orchestration
 
 [Docker for Beginners - Windows](/beginner-win/)
 You've been learning about Docker, here's a chance to get a hands on introduction to the key concepts of Docker. This lab will cover the basics of 

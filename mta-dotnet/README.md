@@ -17,7 +17,10 @@ The app you'll be using is the same one from the video series [Modernizing .NET 
 
 ## <a name="0"></a>Step 0: The Play with Docker Lab Environment
 
-Start a Docker Enterprise Edition session at the URL provided by your workshop organizer. This is a hybrid cluster, with Linux and Windows nodes.
+Start a Docker Enterprise Edition session at the URL provided by your workshop organizer. This is a hybrid cluster, with Linux and Windows nodes. This workshop is only available to people in doing a [Hands-on-Lab at DockerCon 2018](https://2018.dockercon.com/hands-on-labs/).
+
+
+# TODO: Add Link to Environment
 
 The left-hand navigation lists all the nodes you can connect to. Select the Windows node - the name will start with `win0000` - and the terminal window in the right-hand pane connects to a PowerShell session on the Windows node:
 
