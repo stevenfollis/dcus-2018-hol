@@ -13,6 +13,8 @@ In this lab we'll help you get familiar with running Docker on Windows. We'll lo
 
 Start a Docker Enterprise Edition session at the URL provided by your workshop organizer. This is a hybrid cluster, with Linux and Windows nodes.
 
+# TODO: Add Link to Environment
+
 The left-hand navigation lists all the nodes you can connect to. Select the Windows node - the name will start with `win0000` - and the terminal window in the right-hand pane connects to a PowerShell session on the Windows node:
 
 ![Windows terminal in Play with Docker](./mta-dotnet/images/pwd-windows-terminal.jpg)
