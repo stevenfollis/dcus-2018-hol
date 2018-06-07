@@ -4,22 +4,18 @@ Hands on Labs for DockerCon US 2018
 
 ![](./images/pwd_screen.png)
 
-This workshop is only available to people in a pre-arranged workshop. That may happen through a [Docker Meetup](https://events.docker.com/chapters/), a conference workshop that is being led by someone who has made these arrangements, or special arrangements between Docker and your company. The workshop leader will provide you with the URL to a workshop environment that includes [Docker Enterprise Edition](https://www.docker.com/enterprise-edition). The environment will be based on [Play with Docker](https://labs.play-with-docker.com/).
+This workshop is only available to people doing a [Hands-on-Lab at DockerCon 2018](https://2018.dockercon.com/hands-on-labs/). The environment will be based on [Play with Docker](https://labs.play-with-docker.com/).
 
-If none of these apply to you, contact your local [Docker Meetup Chapter](https://events.docker.com/chapters/) and ask if there are any scheduled workshops. In the meantime, you may be interested in the labs available through the [Play with Docker Classroom](training.play-with-docker.com).
+If that doesn't apply to you, you may be interested in the labs available through the [Play with Docker Classroom](training.play-with-docker.com) or the [Play with Kubernetes Classroom](https://training.play-with-kubernetes.com/).
 
 There are three main components to the Play With Docker (PWD) interface. 
-
-> **Important Note: beta** Please note, as of now this is a beta Docker EE 2.0 environment. Docker EE 2.0 shows off the new Kubernetes functionality which is described below.
 
 ### 1. Console Access
 Play with Docker provides access to the 4 Docker EE hosts in your Cluster. These machines are:
 
 * A Linux-based Docker EE 18.01 Manager node
 * Three Linux-based Docker EE 18.01 Worker nodes
-* A Windows Server 2016-based Docker EE 17.06 Worker Node
-
-> In some cases, your workshop organizer will have requested a Linux only environment. In that case, just skip the Windows sections of the workshop.
+* A Windows Server 2016-based Docker EE 17.06 Worker Node (if doing a windows oriented lab)
 
 By clicking a name on the left, the console window will be connected to that node.
 
@@ -73,13 +69,6 @@ Moving an application to Docker doesn't mean you have to re-write your whole app
 Moving an application to Docker doesn't mean you have to re-write your whole application. In this lab, you'll containerize an older, monolithic .NET application without changing any code. And you'll see the benefit of running it on Docker. Then in a few simple steps you'll build additional services in separate containers, breaking features out of the monolith into separate containers, without rewriting the app. 
 
 [Docker EE with Kubernetes](https://github.com/dockersamples/ee-workshop)
-Docker EE 2.0 (beta) is the first Containers-as-a-Service platform to offer production-level support for the integrated management and security of both Linux and Windows Server Containers. It is also the first platform to support both Docker Swarm and Kubernetes orchestration.
+Docker EE 2.0 is the first Containers-as-a-Service platform to offer production-level support for the integrated management and security of both Linux and Windows Server Containers. It is also the first platform to support both Docker Swarm and Kubernetes orchestration.
 
 In this lab we'll use a Docker EE cluster comprised of Windows and Linux nodes. We'll deploy both a Java web app on Linux and a multi-service application that includes both Windows and Linux components using Docker Swarm. Then we'll take a look at securing and scaling the application. Finally, we will then deploy the app using Kubernetes.
-
-
-[Continuous Delivery and Containerization](/cicd/) - Levering Docker and Jenkins 2 to simplify and standardize your pipeline
-Jenkins' updated support for pipeline allows us to script our approach to continuous delivery in a way that we could not before. Additionally, it includes several steps specifically aimed at making it simple to create and use Docker containers to simplify and standardize the pipeline stages. Join us in this workshop as we look at how to leverage these two key technologies to achieve a consistent and reliable CD process.
-
-Jenkins 2 supports multiple ways of working with and supporting Docker containers - as a Docker cloud node, as an agent running Docker, as a built-in environment, and as a tool that can be invoked separately. Using a combination of these approaches gives us flexibility and simplicity in building up a CD pipeline. Come learn about the different support models and available methods for creating and leveraging containers in Jenkins and get hands-on practice with the technology.
-
