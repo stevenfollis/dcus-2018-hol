@@ -171,7 +171,7 @@ For this task you will create a service that runs an NGINX webserver. Just the d
 
 4. Creating the stack also creates a couple of networks and scales the vote service to 2 replicas, which will spread it out over two containers. Given different [distribution strategies](https://docs.docker.com/docker-cloud/apps/stack-yaml-reference/#deployment_strategy), this could spread it to one or two nodes.
 
-5. After you click create, it will take a little while to get started. Each service will be created. If you click back on `Stacks` you will see `vote` there.
+5. After you click `Create`, it will take a little while to get started. Each service will be created. Click on the `Done` button and make sure you are  back on `Stacks`. You will see `vote` there.
 
   ![](../images/vote_stack.png)
 
