@@ -1,11 +1,11 @@
-# Lab: Distribution and Trust
+# Lab: Docker Content Trust and Docker Trusted Registry
 
 > **Difficulty**: Intermediate
 
 > **Time**: Approximately 30 minutes
 
 This lab focuses on understanding and securing image distribution. We'll
-start with a simple `docker pull` and build up to using Docker Content Trust (DCT).
+start with a simple `docker pull` and build up to using Docker Content Trust (DCT), Docker Trusted Registry (DTR) and the new `docker trust` command!
 
 You will complete the following steps as part of this lab.
 
@@ -13,7 +13,8 @@ You will complete the following steps as part of this lab.
 - [Step 2 - Pulling images by digest](#digest)
 - [Step 3 - Docker Content Trust](#trust)
 - [Step 4 - Docker Trusted Registry](#official)
-- [Step 5 - Extra for experts](#extra)
+- [Step 5 - The new Docker Trust command!](#extra)
+- [Step 6 - Extra for experts](#extra)
 
 # Access Play with Docker environment
 
@@ -221,18 +222,143 @@ In this step you will enable Docker Content Trust, sign images as you push them,
 
 In this step you have seen how to enable and disable Docker Content Trust. You have also seen how to sign images that you push. For more information about Docker Content Trust, see [the documentation](https://docs.docker.com/engine/security/trust/).
 
-# <a name="official"></a>Step 4: Official images
+# <a name="official"></a>Step 4: Docker Trusted Registry
 
-All images in Docker Hub under the `library` organization (currently viewable at: https://hub.docker.com/explore/)
-are deemed "Official Images."  These images undergo a rigorous, [open-source](https://github.com/docker-library/official-images/)
-review process to ensure they follow best practices. These best practices include signing, being lean, and having clearly written Dockerfiles. For these reasons, it is strongly recommended that you use official images whenever possible.
+Docker Trusted Registry allows you to store and manage your Docker images
+on-premise or in your private cloud to support security or regulatory
+compliance requirements. [Find out more about Docker Trusted Registry.](https://docs.docker.com/ee/dtr/)
 
-Official images can be pulled with just their name and tag. You do not have to precede the image name with `library/` or any other repository name.
+One of the great features of Docker Trusted Registry is that it integrates
+with Docker Content Trust seemlessly. Let's have a look at what happens:
 
+1. Log in Docker Trusted Registry in your browser and create a new repo
 
-# <a name="extra"></a>Step 5: Extra for Experts
+Visit `https://[my-dtr-instance].ee-beta2.play-with-docker.com` and create
+a new user in the `Users` tab on the left.
 
-Docker Content Trust is powered by [Notary](https://github.com/docker/notary), an open-source TUF-client and server that can operate over arbitrary trusted collections of data. Notary has its own CLI with robust features
+Then visit the `Repositories` tab on the left and create a new repository for
+the user you just created: `[user]/myalpine` with the default options.
+
+2. Pull an image and tag it for Docker Trusted Registry
+
+   ```
+   $ docker pull alpine:latest
+
+   latest: Pulling from library/alpine
+   Digest: sha256:e1871801d30885a610511c867de0d6baca7ed4e6a2573d506bbec7fd3b03873f
+   Status: Image is up to date for alpine:latest
+
+   $ docker tag [my-dtr-instance].ee-beta2.play-with-docker.com/[user]/myalpine
+   ```
+
+This step will pull the `alpine` image from the registry and rename it so that
+Docker knows where the remote location of the image is.
+
+3. Log in DTR on the CLI
+
+   ```
+   $ docker login [my-dtr-instance].ee-beta2.play-with-docker.com
+
+   Username: [user]
+   Password: [password]
+   Login Succeeded
+   ```
+
+4. Activate Docker Content Trust and push your new image
+
+   ```
+   $ DOCKER_CONTENT_TRUST=1 docker push ip172-18-0-14-bce59utdffhg00b2tfs0.direct.ee-beta2.play-with-docker.com/nass/myalpine:latest
+
+   The push refers to a repository [ip172-18-0-14-bce59utdffhg00b2tfs0.direct.ee-beta2.play-with-docker.com/nass/myalpine]
+   cd7100a72410: Layer already exists
+   latest: digest: sha256:8c03bb07a531c53ad7d0f6e7041b64d81f99c6e493cb39abba56d956b40eacbc size: 528
+   Signing and pushing trust metadata
+   You are about to create a new root signing key passphrase. This passphrase
+   will be used to protect the most sensitive key in your signing system. Please
+   choose a long, complex passphrase and be careful to keep the password and the
+   key file itself secure and backed up. It is highly recommended that you use a
+   password manager to generate the passphrase and keep it safe. There will be no
+   way to recover this key. You can find the key in your config directory.
+   Enter passphrase for new root key with ID 405789e:
+   Repeat passphrase for new root key with ID 405789e:
+   Enter passphrase for new repository key with ID 86a5a55 (ip172-18-0-14-bce59utdffhg00b2tfs0.direct.ee-beta2.play-with-docker.com/nass/myalpine):
+   Repeat passphrase for new repository key with ID 86a5a55 (ip172-18-0-14-bce59utdffhg00b2tfs0.direct.ee-beta2.play-with-docker.com/nass/myalpine):
+   Finished initializing "ip172-18-0-14-bce59utdffhg00b2tfs0.direct.ee-beta2.play-with-docker.com/nass/myalpine"
+   Successfully signed "ip172-18-0-14-bce59utdffhg00b2tfs0.direct.ee-beta2.play-with-docker.com/nass/myalpine":latest
+   ```
+
+5. Verify your signed images in Docker Trusted Registry
+
+You can now verify in the `Repositories` tab from DTR Web Interface that the new image is signed: your repository -> view details -> IMAGES.
+
+As simple as that.
+
+# <a name="extra"></a>Step 5: The new Docker Trust command!
+
+Although not available in your current Play-with-Docker environment on the CLI, Docker
+Trust is currently available on Docker EE 18.03+.
+
+Docker Trust allows you to easily create & manage keys and signers for your
+signing policies. Let's have a quick look at what's available!
+
+1. Set the Docker Content Trust Server (Docker Trusted Registry in our case)
+
+   ```
+   $ export DOCKER_CONTENT_TRUST_SERVER="https://[my-dtr-instance].ee-beta2.play-with-docker.com"
+   ```
+
+2. Download and whitelist the DTR CA certificate for TLS connections
+
+Visit `https://[my-dtr-instance].ee-beta2.play-with-docker.com/ca` to download
+the CA cert (don't forget the `/ca` !!) and place it in Docker's TLS
+configuration directory at:
+
+   `$HOME/.docker/tls/[my-dtr-instance].ee-beta2.play-with-docker.com/ca.crt`
+
+3. Generate your first key
+
+  ```
+  $ docker trust key generate myfirstkey
+
+  Generating key for myfirstkey...
+  Enter passphrase for new myfirstkey key with ID 22d4ffc: 
+  Repeat passphrase for new myfirstkey key with ID 22d4ffc: 
+  Successfully generated and loaded private key. Corresponding public key available: /path/to/myfirstkey.pub
+  ```
+
+This command will generate a new private/public key pair. The private key will
+be loaded in Docker and be available at `$HOME/.docker/trust/private`. The
+public key is available in the specified directory (see the command's output).
+
+4. Create a new signer
+
+  ```
+  $ docker trust signer add [signer] [my-dtr-instance].ee-beta2.play-with-docker.com/[user]/myalpine --key /path/to/myfirstkey.pub
+  ```
+
+This command will create a signer with the newly generated key pair. More
+specifically, it will allow you to sign images with this particular key pair for the specified
+repository.
+
+5. Sign and push an image
+
+  ```
+  $ docker trust sign [my-dtr-instance].ee-beta2.play-with-docker.com/[user]/myalpine:latest
+
+  Signing and pushing trust metadata for [user]/myalpine:latest
+  Existing signatures for tag latest digest 8c03bb07a531c53ad7d0f6e7041b64d81f99c6e493cb39abba56d956b40eacbc from: [signer]
+  Enter passphrase for myfirstkey key with ID efdadf0: 
+  Successfully signed [my-dtr-instance].ee-beta2.play-with-docker.com/[user]/myalpine:latest
+  ```
+
+This command will both sign and push the image if possible to the remote
+registry. In a similar fashion to the previous chapter, you can now visit the
+image details on your DTR Web Interface and verify that the new image is
+signed.
+
+# <a name="extra"></a>Step 6: Extra for Experts
+
+Docker Content Trust and Docker Trusted Registry are powered by [Notary](https://github.com/docker/notary), an open-source TUF-client and server that can operate over arbitrary trusted collections of data. Notary has its own CLI with robust features
 such as the ability to rotate keys and remove trust data. In this step you will play with the Notary CLI and a local instance of the Notary server instead of the one deployed alongside Docker Hub.
 
 1.  Get a notary client.
