@@ -12,8 +12,8 @@ You will complete the following steps as part of this lab.
 - [Step 1 - Pulling images by tag](#tag)
 - [Step 2 - Pulling images by digest](#digest)
 - [Step 3 - Docker Content Trust](#trust)
-- [Step 4 - Docker Trusted Registry](#official)
-- [Step 5 - The new Docker Trust command!](#extra)
+- [Step 4 - Docker Trusted Registry](#registry)
+- [Step 5 - The new Docker Trust command!](#dockertrust)
 - [Step 6 - Extra for experts](#extra)
 
 # Access Play with Docker environment
@@ -222,7 +222,7 @@ In this step you will enable Docker Content Trust, sign images as you push them,
 
 In this step you have seen how to enable and disable Docker Content Trust. You have also seen how to sign images that you push. For more information about Docker Content Trust, see [the documentation](https://docs.docker.com/engine/security/trust/).
 
-# <a name="official"></a>Step 4: Docker Trusted Registry
+# <a name="registry"></a>Step 4: Docker Trusted Registry
 
 Docker Trusted Registry allows you to store and manage your Docker images
 on-premise or in your private cloud to support security or regulatory
@@ -293,7 +293,7 @@ You can now verify in the `Repositories` tab from DTR Web Interface that the new
 
 As simple as that.
 
-# <a name="extra"></a>Step 5: The new Docker Trust command!
+# <a name="dockertrust"></a>Step 5: The new Docker Trust command!
 
 Although not available in your current Play-with-Docker environment on the CLI, Docker
 Trust is currently available on Docker EE 18.03+.

@@ -9,6 +9,9 @@
 In this lab you'll learn how to use Docker EE and more particularily 
 Universal Control Plane (UCP) to create a *secret* in Docker Swarm and use it with an application.
 
+A version of this lab is available on Docker Docs Website
+[here](https://docs.docker.com/ee/ucp/swarm/use-secrets/#use-secrets-in-your-services).
+
 You will complete the following steps as part of this lab.
 
 - [Step 1 - Create a Secret](#secret)
@@ -148,7 +151,7 @@ secret.
 
 You also published the web front end portion of the application (the `wp-fe`
   service) on port `8000`. This means that you should be able to connect to the
-  application on port `8000` of any of the nodes in your DDC/UCP cluster.
+  application on port `8000` of any of the nodes in your UCP cluster.
 
 
 # <a name="test"></a>Step 3: Test the Application
