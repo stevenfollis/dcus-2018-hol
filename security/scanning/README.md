@@ -47,8 +47,6 @@ Docker Trusted Registry. In this step you will create a new repository within yo
 `SCAN ON PUSH` is set to `On push` then click `Create`. Here we'll go with
 `[user]/scanme` as repository name 
 
-  ![](images/scan2.png)
-
 Now that you have created a new repo in DTR, you can proceed to
 the next step.
 
