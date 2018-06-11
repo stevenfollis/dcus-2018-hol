@@ -6,8 +6,8 @@
 
 > **Time**: Approximately 15 minutes
 
-In this lab you'll learn how to use Docker Universal Control Plane (UCP) to
-create a *secret* and use it with an application.
+In this lab you'll learn how to use Docker EE and more particularily 
+Universal Control Plane (UCP) to create a *secret* in Docker Swarm and use it with an application.
 
 You will complete the following steps as part of this lab.
 
@@ -16,14 +16,10 @@ You will complete the following steps as part of this lab.
 - [Step 3 - Test the App](#test)
 - [Step 4 - View the Secret](#view)
 
-# Prerequisites
+# Access Play with Docker environment
 
-You will need all of the following to complete this lab:
-
-- A UCP cluster comprising nodes running **Docker 1.13** or higher
-- The public IP or public DNS name of at least one of your UCP cluster nodes
-- An account in UCP with permission to create secrets and deploy applications
-
+In order to run the lab, we have provided a Docker Enterprise Edition *Play with Docker* environment for you to use. This workshop is only available to
+people in doing a [Hands-on-Lab at DockerCon 2018](https://2018.dockercon.com/hands-on-labs/).
 
 # <a name="secret"></a>Step 1: Create a Secret
 
@@ -31,14 +27,18 @@ In this step you'll use the UCP web UI to create a new *secret*.
 
 1. Login in to UCP (your lab instructor will provide you with account details).
 
-2. From within UCP click `Resources` > `Secrets` > `+ Create Secret`.
+2. From within UCP click `Swarm` > `Secrets` > `+ Create Secret`.
 
 3. In the **NAME** field give the secret a name. The name is arbitrary but must
 be unique.
 
-4. Enter a text string as the **VALUE** of the secret.
+4. Enter a text string as the **CONTENT** of the secret.
 
 5. Leave all other options as their default values.
+
+You can also optionally define a permission label so that other users get the
+permission to use this secret. Also, note that a service and secret must have
+the same permission label or no label at all in order to be used together.
 
   The screenshot below shows a secret called **wp-1** with some plain text as
   the value of the secret.
@@ -69,22 +69,25 @@ following high level tasks:
 
 Perform all of the following actions from the UCP web UI.
 
-1. Click the `Resources` tab > `Networks` > `+ Create Network`.
+1. Click the `Swarm` tab > `Networks` > `+ Create Network`.
 
 2. Name the network **wp-net** and leave everything else as defaults.
+
+You can optionally activate encrypted communication between containers on
+different nodes while creating the network.
 
 3. Click `Create` to create the network.
 
   The `wp-net` is now created and ready to be used by the app.
 
-4. Click `Services` from within the `Resources` tab and then click `Create a
+4. Click `Services` from within the `Swarm` tab and then click `Create a
 Service`.
 
 5. Give the service the following values and leave all others as default:
 
   - **Details tab\SERVICE NAME**: wp-db
   - **Details tab\IMAGE NAME**: mysql:5.7
-  - **Resources tab\NETWORKS**: wp-net
+  - **Swarm tab\NETWORKS**: wp-net
   - **Environment tab\SECRET NAME**: wp-1
   - **Environment tab\ENVIRONMENT VARIABLE NAME**: MYSQL_ROOT_PASSWORD_FILE
   - **Environment tab\ENVIRONMENT VARIABLE VALUE**: /run/secrets/wp-1  
@@ -105,15 +108,15 @@ Service`.
 6. Click `Deploy Now` to deploy the service.
 
 7. Deploy the front-end service by clicking `Services` from within the
-`Resources` tab and then click `Create a Service`.
+`Swarm` tab and then click `Create a Service`.
 
 8. Give the service the following values and leave all others as default:
 
   - **Details tab\SERVICE NAME**: wp-fe
   - **Details tab\IMAGE NAME**: wordpress:latest
-  - **Resources tab\Ports\INTERNAL PORT**: 80
-  - **Resources tab\Ports\PUBLIC PORT**: 8000
-  - **Resources tab\NETWORKS**: wp-net
+  - **Swarm tab\Ports\INTERNAL PORT**: 80
+  - **Swarm tab\Ports\PUBLIC PORT**: 8000
+  - **Swarm tab\NETWORKS**: wp-net
   - **Environment tab\SECRET NAME**: wp-1
   - **Environment tab\ENVIRONMENT VARIABLE NAME**: WORDPRESS_DB_PASSWORD_FILE
   - **Environment tab\ENVIRONMENT VARIABLE VALUE**: /run/secrets/wp-1
@@ -170,7 +173,7 @@ service and verify that the secret is present.
 
 Perform all of the following steps from within the UCP web UI.
 
-1. Click the `Resources` tab > `Services` and click on the `web-fe` service.
+1. Click the `Swarm` tab > `Services` and click on the `web-fe` service.
 
 2. Click the `Tasks` tab.
 
