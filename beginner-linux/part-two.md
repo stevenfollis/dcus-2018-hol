@@ -264,7 +264,7 @@ We will not go into all the details here but we can use some filters to just ins
 Let's get the list of layers:
 
 ```.term1
-docker image inspect --format "{{ "{{ json .RootFS.Layers "}}}}" alpine
+docker image inspect --format "{ "{{ json .RootFS.Layers "}}}" alpine
 ```
 
 Alpine is just a small base OS image so there's just one layer:
