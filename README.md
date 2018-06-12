@@ -3,8 +3,8 @@ Hands on Labs for DockerCon US 2018
 
 Click one of these links to use Docker Enterprise Edition with these labs.
 
-[Hybrid Windows-Linux environment](https://dockr.ly/hol18-hybrid)
-[Linux Only environment](https://dockr.ly/hol18-linux)
+- [Hybrid Windows-Linux environment](https://dockr.ly/hol18-hybrid)
+- [Linux Only environment](https://dockr.ly/hol18-linux)
 
 ## Understanding the Play With Docker Interface
 
