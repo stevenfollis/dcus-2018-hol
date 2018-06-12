@@ -6,4 +6,4 @@ In these three exercises, you'll learn the basics of Docker running on Linux. Th
 
 * [Part Two: Customizing Docker Images](part-two.md): Move on to building your own custom Docker images and explore the Docker concept of image layers and the Dockerfile.
 
-* [Deploy and Managing Multiple Containers](/part-three.md): Real apps consist of multiple components. In this lab you will begin to explore running multiple services as a single stack with Docker Swarm.
+* [Deploy and Managing Multiple Containers](part-three.md): Real apps consist of multiple components. In this lab you will begin to explore running multiple services as a single stack with Docker Swarm.
