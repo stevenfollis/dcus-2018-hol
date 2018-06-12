@@ -174,7 +174,7 @@ Using only a couple of commands enables you to deploy a stack of services using 
 ## What next?
 Hopefully these first few labs have given you some familiarity with Docker, containers, and Docker Swarm Mode orchestration. We encourage you to keep Playing With Docker to learn more. There are several things you can do to continue your learning:
 
-1. Keep learning right here in the Play With Docker classroom with [Phase 2 and Phase 3](/ops-landing) of the Docker for IT Pros and System Administrators learning path. 
+1. Keep learning right here in the Play With Docker classroom with [Phase 2](https://training.play-with-docker.com/ops-stage2/) and [Phase 3](https://training.play-with-docker.com/ops-stage3/) of the Docker for IT Pros and System Administrators learning path. 
   * In Phase 2 you will learn more about orchestration, security, and networking
   * Phase 3 will bring it all together as you implement a proof-of-concept application
 2. Run the labs locally on your machine. You can download the free [Docker for Mac](https://www.docker.com/docker-mac) or [Docker for Windows](https://www.docker.com/docker-windows) clients and run some of these labs right on your own machine.
