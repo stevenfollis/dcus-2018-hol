@@ -4,8 +4,6 @@ In the [previous exercise](part-one.md) you pulled down images from [Docker Stor
 
 In order to run this lab, we have provided a Docker Enterprise Edition *Play with Docker* environment for you to use. This workshop is only available to people in doing a [Hands-on-Lab at DockerCon 2018](https://2018.dockercon.com/hands-on-labs/).
 
-# TODO:Provide a link to the environment
-
 When you open it, it'll look something like this
 
 ![Docker EE Environment](../images/pwd-linonly.png)
