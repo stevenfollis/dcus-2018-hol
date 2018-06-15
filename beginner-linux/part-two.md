@@ -23,7 +23,7 @@ We will then see how to get the details of an image through the inspection and e
 Let's start by running an interactive shell in a ubuntu container:
 
 ```.term1
-docker container run -ti ubuntu bash
+docker container run -it ubuntu bash
 ```
 
 As you know from earlier labs, you just grabbed the image called "ubuntu" from Docker Store and are now running the bash shell inside that container.[^1]
