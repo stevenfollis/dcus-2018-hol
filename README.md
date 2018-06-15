@@ -1,5 +1,11 @@
-# dcus-2018-hol
+# 2018 DockerCon Hands On Labs
 Hands on Labs for DockerCon US 2018
+
+Open one of these links in a new browser window to use Docker Enterprise Edition with these labs.
+
+- [Hybrid Windows-Linux environment](https://dockr.ly/hol18-hybrid)
+- [Linux Only environment](https://dockr.ly/hol18-linux)
+
 ## Understanding the Play With Docker Interface
 
 ![](./images/pwd_screen.png)
