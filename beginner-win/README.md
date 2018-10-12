@@ -17,7 +17,7 @@ Start a Docker Enterprise Edition session at the URL provided by your workshop o
 
 The left-hand navigation lists all the nodes you can connect to. Select the Windows node - the name will start with `win0000` - and the terminal window in the right-hand pane connects to a PowerShell session on the Windows node:
 
-![Windows terminal in Play with Docker](./mta-dotnet/images/pwd-windows-terminal.jpg)
+![Windows terminal in Play with Docker](../mta-dotnet/images/pwd-windows-terminal.jpg)
 
 > Click in the terminal window and hit Enter to initialise the session.
 
