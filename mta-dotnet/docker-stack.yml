@@ -13,7 +13,7 @@ services:
       - app-net
 
   signup-app:
-    image: dockersamples/dockersamples/mta-dev-signup-app:v4
+    image: dockersamples/mta-dev-signup-app:v4
     ports:
     - mode: host
       published: 80
